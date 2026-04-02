@@ -5,9 +5,13 @@ Materia: **Programación 3** Ciclo Lectivo: **2026**
 ## 👥 Integrantes - Grupo F
 
 Lucía Allassia
+
 Martina Ascona
+
 Estrella Cardozo
+
 Giovanni Percara
+
 Andrea Natalia Segovia
 
 ---
