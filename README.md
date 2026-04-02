@@ -1,9 +1,30 @@
-# Grupo-F-----Programacion-3
+# Trabajo Práctico N°1: API Fetch & File System
 
-Integrantes:
+Materia: **Programación 3** Ciclo Lectivo: **2026**
+
+## 👥 Integrantes - Grupo F
 
 Lucía Allassia
 Martina Ascona
 Estrella Cardozo
 Giovanni Percara
 Andrea Natalia Segovia
+
+---
+
+## 📂 Descripción del Proyecto
+Este repositorio contiene el desarrollo del primer trabajo práctico, basado en el consumo de la API y la persistencia de datos local mediante Node.js.
+
+### Estructura de carpetas:
+* **/src**: Contiene los archivos de lógica y funciones (`.js`).
+* **/data**: Carpeta destinada al almacenamiento del archivo de datos (`.json`).
+
+## 🛠️ Tecnologías Utilizadas
+* **Node.js** (Entorno de ejecución)
+* **Fetch API** (Peticiones asíncronas)
+* **File System (fs)** (Manejo de archivos locales)
+* **Manejo de errores:** Bloques `try...catch` y sintaxis `Async/Await`.
+
+---
+*MIT License*
+
