@@ -58,6 +58,27 @@ async function NuevoPersonaje() {
 personajes();
 NuevoPersonaje();
 
+// Ejerciocio 1c
+
+async function buscarPersonaje(id) {
+    try {
+       
+        const respuesta = await fetch(`${url}/${id}`);
+
+        if (!respuesta.ok) { 
+             console.log('Personaje no encontrado');
+             return; 
+        }
+        const personaje = await respuesta.json();
+     
+        console.log("Personaje: ", personaje);
+
+    } catch (error) {
+        console.log(`Error en busqueda -> ${error}`);
+    }
+}
+
+
 
 
 
