@@ -1,4 +1,4 @@
-// Ejercicio 1a
+////////////////// Ejercicio 1a///////////////////////////
 
 const url = 'https://thronesapi.com/api/v2/Characters';
 
@@ -18,7 +18,8 @@ async function personajes() {
         console.log(`error -> ${error}`);
     }
 }
-// Ejercicio 1b
+
+////////////////////// Ejercicio 1b////////////////////
 
 async function NuevoPersonaje() {
     try{
@@ -39,11 +40,17 @@ async function NuevoPersonaje() {
             },
             body: JSON.stringify(agregar)
         });
+        
+        
+        //corrobora status: 200 , indica que la solicitud se ha procesado correctmamente .
+        console.log("Estado de la respuesta (Status):", resp.status);
+
+
         if (!resp.ok) {
             console.log('Error. Por favor verifique los datos');
             return;
         }
-
+      
         const datos = await resp.json();
         console.log('Personaje agregado con exito:', datos);
 
@@ -52,13 +59,9 @@ async function NuevoPersonaje() {
         catch (error) {
         console.log(`error -> ${error}`);
         }
-
-    
 }
-personajes();
-NuevoPersonaje();
 
-// Ejerciocio 1c
+/////////////////// Ejerciocio 1c////////////////
 
 async function buscarPersonaje(id) {
     try {
@@ -74,10 +77,20 @@ async function buscarPersonaje(id) {
         console.log("Personaje: ", personaje);
 
     } catch (error) {
-        console.log(`Error en busqueda -> ${error}`);
+        console.log(`Error en busqueda, Por favor intentelo nuevamente -> ${error}`);
     }
 }
 
+/////////sacar comentario, para probar y ejecutar, luego se elimina para tener el codigo limpio//////////
+// Prueba de funcionamiento del 1.a (Traer todos)
+personajes();
+
+//prueba de funcionamiento 1.b (Crear uno nuevo)
+NuevoPersonaje();
+
+//prueba de funcionamiento 1.c (Buscar por ID )
+buscarPersonaje(12);
+ 
 
 
 
