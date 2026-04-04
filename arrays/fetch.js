@@ -24,7 +24,7 @@ async function personajes() {
         }
 
         const datos = await resp.json();
-        console.log(datos);
+        // console.log(datos);
 
         // Guardar datos (Ejercicio 1d)
         guardarDatos(datos);
@@ -99,7 +99,34 @@ async function buscarPersonaje(id) {
     }
 }
 
-////////////////////// PRUEBAS //////////////////////
+/////////////////// Ejercicio 2a ////////////////////
+
+async function agregarAlFinal() {
+    try {
+        const data = JSON.parse(fs.readFileSync(rutaPersonajes, 'utf-8'));
+
+        const nuevo = {
+            id: 99,
+            firstName: "Final",
+            lastName: "Personaje",
+            fullName: "Final Personaje",
+            title: "Agregado",
+            family: "Custom",
+            image: "",
+            imageUrl: ""
+        };
+
+        fs.writeFileSync(rutaPersonajes, JSON.stringify(data, null, 2), 'utf-8');
+
+        console.log('✔ Personaje agregado al final');
+        console.log("Antes:", data.length);
+        data.push(nuevo); // Agrego personaje al final del array
+        console.log("Después:", data.length);
+
+    } catch (error) {
+        console.log(`Error -> ${error}`);
+    }
+}
 
 // Traer todos (y guardar JSON)
 personajes();
@@ -109,6 +136,10 @@ NuevoPersonaje();
 
 // Buscar por ID
 buscarPersonaje(12); 
+
+// Agregar al final del JSON
+agregarAlFinal();
+
 
 
 
