@@ -128,6 +128,24 @@ async function agregarAlFinal() {
     }
 }
 
+/////////////////// Ejercicio 2c ////////////////////
+
+async function eliminarPersonaje() {
+    try {
+        const data = JSON.parse(fs.readFileSync(rutaPersonajes, 'utf-8'));
+
+        const eliminado= data[0]; 
+        console.log('Eliminando primer personaje:', eliminado);
+        data.splice(0, 1);
+        console.log("Personaje eliminado con exito");
+
+    fs.writeFileSync(rutaPersonajes, JSON.stringify(data, null, 2), 'utf-8');
+
+    } catch (error) {
+        console.log(`Error -> ${error}`);
+    }
+}
+
 // Traer todos (y guardar JSON)
 personajes();
 
@@ -139,6 +157,9 @@ buscarPersonaje(12);
 
 // Agregar al final del JSON
 agregarAlFinal();
+
+// Eliminar
+eliminarPersonaje();
 
 
 
