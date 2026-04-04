@@ -1,38 +1,54 @@
-////////////////// Ejercicio 1a///////////////////////////
+////////////////// Ejercicio 1a ///////////////////////////
 
 const url = 'https://thronesapi.com/api/v2/Characters';
 
-async function personajes() {
+////////////////// Ejercicio 1d ///////////////////////////
 
-    try{
+const fs = require('fs');
+const path = require('path');
+
+const rutaPersonajes = path.join(__dirname, 'personajes.json');
+
+function guardarDatos(data) {
+    fs.writeFileSync(rutaPersonajes, JSON.stringify(data, null, 2), 'utf-8');
+    console.log('Datos guardados correctamente en personajes.json');
+}
+
+async function personajes() {
+    try {
         const resp = await fetch(url);
 
         if (!resp.ok) {
             console.log('error');
+            return;
         }
 
         const datos = await resp.json();
         console.log(datos);
 
-    }catch (error){
+        // Guardar datos (Ejercicio 1d)
+        guardarDatos(datos);
+
+    } catch (error) {
         console.log(`error -> ${error}`);
     }
 }
 
-////////////////////// Ejercicio 1b////////////////////
+////////////////////// Ejercicio 1b ////////////////////
 
 async function NuevoPersonaje() {
-    try{
+    try {
         const agregar = {
-            "id": 0,
-            "firstName": "Nuevo",
-            "lastName": "Personaje",
-            "fullName": "Nuevo Personaje",
-            "title": "Agregado",
-            "family": "Los Nuevos",
-            "image": "x.jpg",
-            "imageUrl": "x.com",
+            id: 0,
+            firstName: "Nuevo",
+            lastName: "Personaje",
+            fullName: "Nuevo Personaje",
+            title: "Agregado",
+            family: "Los Nuevos",
+            image: "x.jpg",
+            imageUrl: "x.com",
         };
+
         const resp = await fetch(url, {
             method: 'POST',
             headers: {
@@ -40,9 +56,7 @@ async function NuevoPersonaje() {
             },
             body: JSON.stringify(agregar)
         });
-        
-        
-        //corrobora status: 200 , indica que la solicitud se ha procesado correctmamente .
+
         console.log("Estado de la respuesta (Status):", resp.status);
 
 
@@ -50,30 +64,34 @@ async function NuevoPersonaje() {
             console.log('Error. Por favor verifique los datos');
             return;
         }
-      
-        const datos = await resp.json();
-        console.log('Personaje agregado con exito:', datos);
 
-        } 
-        
-        catch (error) {
-        console.log(`error -> ${error}`);
+        // Manejo seguro por si la API no devuelve JSON
+        const texto = await resp.text();
+
+        if (texto) {
+            const datos = JSON.parse(texto);
+            console.log('Personaje agregado con exito:', datos);
+        } else {
+            console.log('Personaje agregado (sin respuesta en body)');
         }
+
+    } catch (error) {
+        console.log(`error -> ${error}`);
+    }
 }
 
-/////////////////// Ejerciocio 1c////////////////
+/////////////////// Ejercicio 1c ////////////////////
 
 async function buscarPersonaje(id) {
     try {
-       
         const respuesta = await fetch(`${url}/${id}`);
 
-        if (!respuesta.ok) { 
-             console.log('Personaje no encontrado');
-             return; 
+        if (!respuesta.ok) {
+            console.log('Personaje no encontrado');
+            return;
         }
+
         const personaje = await respuesta.json();
-     
         console.log("Personaje: ", personaje);
 
     } catch (error) {
@@ -81,16 +99,16 @@ async function buscarPersonaje(id) {
     }
 }
 
-/////////sacar comentario, para probar y ejecutar, luego se elimina para tener el codigo limpio//////////
-// Prueba de funcionamiento del 1.a (Traer todos)
+////////////////////// PRUEBAS //////////////////////
+
+// Traer todos (y guardar JSON)
 personajes();
 
-//prueba de funcionamiento 1.b (Crear uno nuevo)
+// Crear uno nuevo
 NuevoPersonaje();
 
-//prueba de funcionamiento 1.c (Buscar por ID )
-buscarPersonaje(12);
- 
+// Buscar por ID
+buscarPersonaje(12); 
 
 
 
