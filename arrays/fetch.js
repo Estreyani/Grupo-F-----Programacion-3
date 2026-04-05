@@ -24,9 +24,7 @@ async function personajes() {
         }
 
         const datos = await resp.json();
-        // console.log(datos);
 
-        // Guardar datos (Ejercicio 1d)
         guardarDatos(datos);
 
     } catch (error) {
@@ -65,7 +63,6 @@ async function NuevoPersonaje() {
             return;
         }
 
-        // Manejo seguro por si la API no devuelve JSON
         const texto = await resp.text();
 
         if (texto) {
@@ -105,6 +102,7 @@ async function agregarAlFinal() {
     try {
         const data = JSON.parse(fs.readFileSync(rutaPersonajes, 'utf-8'));
 
+        console.log("Antes:", data.length);
         const nuevo = {
             id: 99,
             firstName: "Final",
@@ -116,12 +114,53 @@ async function agregarAlFinal() {
             imageUrl: ""
         };
 
+        data.push(nuevo);
+        console.log("Después:", data.length);
+
+        fs.writeFileSync(rutaPersonajes, JSON.stringify(data, null, 2), 'utf-8');
+        console.log('✔ Personaje agregado al final');
+
+    } catch (error) {
+        console.log(`Error -> ${error}`);
+    }
+}
+
+/////////////////// Ejercicio 2b ////////////////////
+
+async function agregarDosAlInicio() {
+    try {
+        const data = JSON.parse(fs.readFileSync(rutaPersonajes, 'utf-8'));
+
+        console.log("Antes:", data.length);
+
+        const nuevo1 = {
+            id: 200,
+            firstName: "Primero",
+            lastName: "Inicio",
+            fullName: "Primero Inicio",
+            title: "Agregado",
+            family: "Custom",
+            image: "",
+            imageUrl: ""
+        };
+
+        const nuevo2 = {
+            id: 201,
+            firstName: "Segundo",
+            lastName: "Inicio",
+            fullName: "Segundo Inicio",
+            title: "Agregado",
+            family: "Custom",
+            image: "",
+            imageUrl: ""
+        };
+
+        data.unshift(nuevo1, nuevo2);
+
+        console.log("Después:", data.length);
         fs.writeFileSync(rutaPersonajes, JSON.stringify(data, null, 2), 'utf-8');
 
-        console.log('✔ Personaje agregado al final');
-        console.log("Antes:", data.length);
-        data.push(nuevo); // Agrego personaje al final del array
-        console.log("Después:", data.length);
+        console.log('✔ Dos personajes agregados al inicio');
 
     } catch (error) {
         console.log(`Error -> ${error}`);
@@ -157,6 +196,9 @@ buscarPersonaje(12);
 
 // Agregar al final del JSON
 agregarAlFinal();
+
+// Agregar dos personajes al inicio
+agregarDosAlInicio();
 
 // Eliminar
 eliminarPersonaje();

@@ -1,5 +1,25 @@
 [
   {
+    "id": 100,
+    "firstName": "Primero",
+    "lastName": "Inicio",
+    "fullName": "Primero Inicio",
+    "title": "Agregado",
+    "family": "Custom",
+    "image": "",
+    "imageUrl": ""
+  },
+  {
+    "id": 101,
+    "firstName": "Segundo",
+    "lastName": "Inicio",
+    "fullName": "Segundo Inicio",
+    "title": "Agregado",
+    "family": "Custom",
+    "image": "",
+    "imageUrl": ""
+  },
+  {
     "id": 0,
     "firstName": "Daenerys",
     "lastName": "Targaryen",
