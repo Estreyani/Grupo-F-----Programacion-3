@@ -5,6 +5,7 @@ const url = 'https://thronesapi.com/api/v2/Characters';
 ////////////////// Ejercicio 1d ///////////////////////////
 
 const fs = require('fs');
+const { arch } = require('os');
 const path = require('path');
 
 const rutaPersonajes = path.join(__dirname, 'personajes.json');
@@ -214,6 +215,25 @@ async function personajesId() {
     }
 }
 
+//////////////////Ejercicio 2e //////////////////////
+
+async function ordenarPornombresDec() {
+    try{
+        const archivo = fs.readFileSync(rutaPersonajes, 'utf-8');
+        const personajes = JSON.parse(archivo);
+
+        const ordenados = [...personajes].sort ((a, b) => b.fullName.localeCompare(a.fullName)
+    );
+
+    console.log("Personajes ordenados por nombre de Z-A:");
+    ordenados.forEach(p => console.log(p.fullName));
+
+} catch (error) {
+    console.log(`Error -> ${error}`);
+}
+    
+}
+
 //////Funcion de flujo de corroboracion de funcionamiento de cada ejercicio//////////
 async function ResultadoTp() {
     // Se crea archivo personajes.json con los personajes traidos de la api
@@ -228,6 +248,9 @@ async function ResultadoTp() {
 
     // Se crea archivo personajesId.json con nombre y id de cada personaje de personajes.json
     await personajesId();
+
+    // Ordena los anteriores datos de forma decreciente y los muestra en la consola
+    await ordenarPornombresDec();
 }
 
 ResultadoTp();
