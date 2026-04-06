@@ -20,8 +20,9 @@ Andrea Natalia Segovia
 Este repositorio contiene el desarrollo del primer trabajo práctico, basado en el consumo de la API y la persistencia de datos local mediante Node.js.
 
 ### Estructura de carpetas:
-* **/src**: Contiene los archivos de lógica y funciones (`.js`).
-* **/data**: Carpeta destinada al almacenamiento del archivo de datos (`.json`).
+* **/src**: Contiene los archivos de lógica (.js) y los archivos de datos persistidos (.json).
+
+> **Nota:** Los archivos de datos (.json) se generan automáticamente en la carpeta /src tras la primera ejecución del script.
 
 ## 🛠️ Tecnologías Utilizadas
 * **Node.js** (Entorno de ejecución)
